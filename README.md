@@ -1,5 +1,5 @@
-````markdown
-## CeraVe TikTok Review Pipeline
+
+# CeraVe TikTok Review Pipeline
 
 This project provides a complete pipeline for collecting, reviewing, validating, and organizing TikTok videos related to CeraVe skincare products.
 
@@ -18,9 +18,8 @@ The final dataset contains 50 manually reviewed TikTok videos. Each video contai
 
 The final dataset is stored in:
 
-```text
-data/cerave_reviews_final.csv
-````
+```markdown
+`data/cerave_reviews_final.csv`
 
 It contains the following columns:
 
