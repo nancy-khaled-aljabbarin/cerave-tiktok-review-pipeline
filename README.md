@@ -1,5 +1,5 @@
 ````markdown
-# CeraVe TikTok Review Pipeline
+## CeraVe TikTok Review Pipeline
 
 This project provides a complete pipeline for collecting, reviewing, validating, and organizing TikTok videos related to CeraVe skincare products.
 
