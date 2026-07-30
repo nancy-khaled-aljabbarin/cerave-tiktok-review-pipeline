@@ -2,3 +2,9 @@
 __pycache__/
 *.pyc
 .idea/
+.env
+
+data/videos/
+data/audios/
+data/archive/
+data/cerave_reviews_enriched_old.csv
