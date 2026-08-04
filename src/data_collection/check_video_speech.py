@@ -42,7 +42,7 @@ def main():
             }
         )
 
-        # يحفظ بعد كل فيديو حتى ما يضيع شغلك
+        # Save your work after each video so it doesn't get lost.
         pd.DataFrame(results).to_csv(
             OUTPUT_FILE,
             index=False,

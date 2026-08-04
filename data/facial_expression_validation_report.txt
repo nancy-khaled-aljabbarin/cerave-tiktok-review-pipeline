@@ -1,0 +1,69 @@
+FACIAL EXPRESSION VALIDATION REPORT
+===================================
+
+Evaluated videos: 50
+Correct predictions: 18
+Incorrect predictions: 32
+Excluded uncertain manual labels: 0
+
+Exact Accuracy: 36.00%
+Macro F1: 27.73%
+Weighted F1: 37.72%
+Cohen's Kappa: 0.1684
+
+CONFUSION MATRIX
+Rows = Manual Reference
+Columns = Model Prediction
+-----------------------------------
+final_facial_expression   neutral  happiness  sadness  surprise  fear  anger  disgust  no_visible_face
+manual_facial_expression                                                                              
+neutral                        10          0        6         1     0      0        0                0
+happiness                       7          6        2         2     2      0        0                0
+sadness                         1          0        0         0     0      0        0                0
+surprise                        2          1        0         0     3      0        0                0
+fear                            0          0        0         0     0      0        0                0
+anger                           0          2        0         0     0      0        0                0
+disgust                         2          0        1         0     0      0        0                0
+no_visible_face                 0          0        0         0     0      0        0                2
+
+PER-CLASS METRICS
+-----------------
+     expression precision  recall f1_score  support
+        neutral    45.45%  58.82%   51.28%       17
+      happiness    66.67%  31.58%   42.86%       19
+        sadness     0.00%   0.00%    0.00%        1
+       surprise     0.00%   0.00%    0.00%        6
+           fear     0.00%   0.00%    0.00%        0
+          anger     0.00%   0.00%    0.00%        2
+        disgust     0.00%   0.00%    0.00%        3
+no_visible_face   100.00% 100.00%  100.00%        2
+
+ACCURACY BY MANUAL CONFIDENCE
+-----------------------------
+                   videos  correct accuracy
+manual_confidence                          
+high                   21        7   33.33%
+medium                 29       11   37.93%
+
+ACCURACY BY MODEL RELIABILITY
+-----------------------------
+                    videos  correct accuracy
+facial_reliability                          
+high                    11        7   63.64%
+low                     23        3   13.04%
+medium                  14        6   42.86%
+not_applicable           2        2  100.00%
+
+MOST COMMON ERRORS
+------------------
+manual_facial_expression  final_facial_expression
+happiness                 neutral                    7
+neutral                   sadness                    6
+surprise                  fear                       3
+anger                     happiness                  2
+disgust                   neutral                    2
+happiness                 fear                       2
+                          sadness                    2
+                          surprise                   2
+surprise                  neutral                    2
+disgust                   sadness                    1
