@@ -1,0 +1,17 @@
+LLM PROMPT COMPARISON
+=====================
+
+Baseline zero_shot
+Accuracy: 76.00%
+Positive recall: 82.35%
+Neutral recall: 43.75%
+Negative recall: 100.00%
+
+Experimental zero_shot_v4
+Accuracy: 68.00%
+Positive recall: 52.94%
+Neutral recall: 56.25%
+Negative recall: 94.12%
+
+Decision:
+Keep zero_shot as the selected configuration because it has higher overall accuracy and better positive/negative recall. V4 improved neutral recall but reduced overall performance.

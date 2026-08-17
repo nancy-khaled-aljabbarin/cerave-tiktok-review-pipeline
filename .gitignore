@@ -10,3 +10,4 @@ data/archive/
 data/cerave_reviews_enriched_old.csv
 models/facial_expression/
 
+models/llm/

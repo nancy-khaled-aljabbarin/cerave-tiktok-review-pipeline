@@ -1,0 +1,64 @@
+FINAL PIPELINE VALIDATION REPORT
+================================
+
+1. TRANSCRIPTION VERIFICATION
+-----------------------------
+Total transcriptions: 50
+Verified transcriptions: 50
+Automatically verified: 47
+Manually verified: 3
+Mean agreement score: 86.90%
+Median agreement score: 88.08%
+Minimum agreement score: 56.00%
+Maximum agreement score: 100.00%
+
+Note: agreement score measures agreement between transcription verification outputs; it is not reported as transcription accuracy.
+
+2. FACIAL EXPRESSION VALIDATION
+-------------------------------
+Evaluated videos: 50
+Correct predictions: 18
+Incorrect predictions: 32
+Exact-match accuracy: 36.00%
+
+Accuracy by model reliability:
+  high: 7/11 (63.64%)
+  low: 3/23 (13.04%)
+  medium: 6/14 (42.86%)
+  not_applicable: 2/2 (100.00%)
+
+Facial confusion matrix:
+Predicted        fear  happiness  neutral  no_visible_face  sadness  surprise
+Manual
+anger               0          2        0                0        0         0
+disgust             0          0        2                0        1         0
+happiness           2          6        7                0        2         2
+neutral             0          0       10                0        6         1
+no_visible_face     0          0        0                2        0         0
+sadness             0          0        1                0        0         0
+surprise            3          1        2                0        0         0
+
+3. LLM SENTIMENT VALIDATION
+---------------------------
+Evaluated reviews: 50
+Correct predictions: 38
+Incorrect predictions: 12
+Overall accuracy: 76.00%
+
+Per-class metrics:
+  positive: precision=0.8750, recall=0.8235, f1=0.8485, support=17
+  neutral: precision=0.7778, recall=0.4375, f1=0.5600, support=16
+  negative: precision=0.6800, recall=1.0000, f1=0.8095, support=17
+
+LLM confusion matrix:
+Predicted  negative  neutral  positive
+Manual
+negative         17        0         0
+neutral           7        7         2
+positive          1        2        14
+
+VALIDATION INTERPRETATION
+-------------------------
+Transcription verification confirms that all available transcriptions were checked.
+Facial-expression results should be treated as a supporting signal, especially when model reliability is low.
+LLM sentiment performance is evaluated against the manually assigned sentiment labels.

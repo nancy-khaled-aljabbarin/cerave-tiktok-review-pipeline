@@ -8,10 +8,12 @@ PROJECT_ROOT = Path(__file__).resolve().parent
 
 load_dotenv(PROJECT_ROOT / ".env")
 
-
 DATA_DIR = PROJECT_ROOT / "data"
 
-RAW_FILE = DATA_DIR / "raw_tiktok_videos.csv"
+RAW_FILE = (
+    DATA_DIR
+    / "raw_tiktok_videos.csv"
+)
 
 BATCH_1_FILE = (
     DATA_DIR
@@ -45,7 +47,12 @@ CONDA_EXE = Path(
 
 FACIAL_ENV_NAME = os.getenv(
     "FACIAL_ENV_NAME",
-    "facial-expression",
+    "facial-expression-clean",
+)
+
+LLM_ENV_NAME = os.getenv(
+    "LLM_ENV_NAME",
+    "llm-analysis",
 )
 
 EXPECTED_SENTIMENT_COUNTS = {

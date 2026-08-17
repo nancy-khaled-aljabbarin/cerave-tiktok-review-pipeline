@@ -9,6 +9,7 @@ from config import (
     EXPECTED_SENTIMENT_COUNTS,
     FACIAL_ENV_NAME,
     FINAL_FILE,
+    LLM_ENV_NAME,
     PROJECT_ROOT,
     RAW_FILE,
     TRANSCRIPTION_FILE,
@@ -195,18 +196,24 @@ def transcription_file_is_safe():
 def run_conda_stage(
     module_name,
     function_name,
+    env_name,
+    function_arguments="",
 ):
-    """Run one pipeline stage in the Conda environment."""
+    """Run one pipeline stage in the selected Conda environment."""
 
     if not CONDA_EXE.exists():
         raise FileNotFoundError(
             f"Conda was not found: {CONDA_EXE}"
         )
 
+    function_call = (
+        f"{function_name}({function_arguments})"
+    )
+
     python_code = (
         f"from {module_name} import "
         f"{function_name}; "
-        f"{function_name}()"
+        f"{function_call}"
     )
 
     subprocess.run(
@@ -215,7 +222,7 @@ def run_conda_stage(
             "run",
             "--no-capture-output",
             "-n",
-            FACIAL_ENV_NAME,
+            env_name,
             "python",
             "-c",
             python_code,
@@ -259,10 +266,14 @@ def prepare_final_dataset():
                 )
                 return False
         else:
-            print("Running TikTok scraping...")
+            print(
+                "Running TikTok scraping..."
+            )
             collect_tiktok()
 
-        print("\nPreparing reviews...")
+        print(
+            "\nPreparing reviews..."
+        )
         prepare_reviews()
 
         print(
@@ -296,7 +307,9 @@ def prepare_final_dataset():
         )
         return False
 
-    print("\nBuilding the final dataset...")
+    print(
+        "\nBuilding the final dataset..."
+    )
     build_final_dataset()
 
     if not final_dataset_is_ready():
@@ -312,7 +325,9 @@ def prepare_final_dataset():
 def main():
     """Run the complete project pipeline."""
 
-    print("\nStarting the project pipeline...\n")
+    print(
+        "\nStarting the project pipeline...\n"
+    )
 
     if not prepare_final_dataset():
         return
@@ -335,21 +350,43 @@ def main():
             "process_facial_expressions"
         ),
         function_name="main",
+        env_name=FACIAL_ENV_NAME,
     )
 
-    print("\nStarting DeepFace analysis...")
+    print(
+        "\nStarting DeepFace analysis..."
+    )
     run_conda_stage(
         module_name=(
             "src.facial_expression."
             "process_deepface"
         ),
         function_name="main",
+        env_name=FACIAL_ENV_NAME,
     )
 
-    print("\nStarting speech detection...")
+    print(
+        "\nStarting speech detection..."
+    )
     run_conda_stage(
         module_name="src.speech_detector",
         function_name="main",
+        env_name=FACIAL_ENV_NAME,
+    )
+
+    print(
+        "\nStarting LLM sentiment analysis..."
+    )
+    run_conda_stage(
+        module_name=(
+            "src.llm_analysis."
+            "process_reviews"
+        ),
+        function_name="process_reviews",
+        env_name=LLM_ENV_NAME,
+        function_arguments=(
+            "prompt_type='zero_shot'"
+        ),
     )
 
     print(
